@@ -1,0 +1,35 @@
+<div class="page-header">
+  <%= link_to applications_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_application_path(@application), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show application</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Cv:</dt>
+  <dd><%= @application.cv %></dd>
+
+  <dt>Linkedin:</dt>
+  <dd><%= @application.linkedin %></dd>
+
+  <dt>Priority:</dt>
+  <dd><%= @application.priority %></dd>
+
+  <dt>Military status:</dt>
+  <dd><%= @application.military_status %></dd>
+
+  <dt>Vacant job:</dt>
+  <dd><%= @application.vacant_job_id %></dd>
+
+  <dt>Application status:</dt>
+  <dd><%= @application.application_status %></dd>
+
+  <dt>Applicant:</dt>
+  <dd><%= @application.applicant_id %></dd>
+
+</dl>

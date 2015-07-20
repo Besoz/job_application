@@ -1,0 +1,5 @@
+class AddSaltToInterviewers < ActiveRecord::Migration
+  def self.up
+    add_column :interviewers, :salt, :string
+  end
+end
