@@ -12,15 +12,6 @@
     </div>
   <% end %>
   
-  <div class="field">
-    <label for="user_name">Name</label><br />
-    <input id="user_name" name="name_label" size="30" type="text" />
-  </div>
-
-  <div class="field">
-    <label for="applicant_email">e-mail</label><br />
-    <input id="applicant_email" name="email_label" size="30" type="text" />
-  </div>
 
   <div class="form-group">
     <%= f.label :name, class: "col-sm-2 control-label" %>
@@ -34,6 +25,17 @@
       <%= f.text_field :email, class: "form-control" %>
     </div>
   </div>
+
+   <%= f.label :file_Avatar, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+
+   <%= f.file_field :file_avatar %>
+ 
+    </div>
+  </div>
+
+
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit class: "btn btn-primary" %>

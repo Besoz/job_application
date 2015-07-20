@@ -16,5 +16,7 @@
 
   <dt>Email:</dt>
   <dd><%= @applicant.email %></dd>
+  <dt>CV:</dt>
+  <dd><%= link_to @applicant.file_avatar_file_name, @applicant.file_avatar.url %></dd>
 
 </dl>

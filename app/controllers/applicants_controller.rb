@@ -26,6 +26,8 @@ class ApplicantsController < ApplicationController
   def new
     @applicant = Applicant.new
 
+
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @applicant }
@@ -41,6 +43,14 @@ class ApplicantsController < ApplicationController
   # POST /applicants.json
   def create
     @applicant = Applicant.new(params[:applicant])
+
+
+    #f ["doc","docx","pdf","xls","xlsx"].include?File.extname(params[:applicant][:file_avatar])
+     #pusts ""
+      #applicant.file_avatar = params[:applicant][:file_avatar]
+   #else
+    # flash[:message] = "You are uploading worng file" #render flash message
+   #end 
 
     respond_to do |format|
       if @applicant.save

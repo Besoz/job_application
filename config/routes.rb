@@ -14,6 +14,12 @@ JobApplication::Application.routes.draw do
   resources :applicants
 
 
+  match '/signup', :to => 'interviewers#new'
+  match '/signin', :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

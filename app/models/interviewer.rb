@@ -3,11 +3,9 @@ class Interviewer < ActiveRecord::Base
 
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-	attr_accessible :name, :position, :email, :password, :password_confirmation
+	attr_accessible :name, :position, :email, :encrypted_password, :password_confirmation
 
-  before_save :encrypt_password
   
-  has_secure_password
 
 	  validates :name,	:presence => true,
 					:length => { :maximum => 50 }

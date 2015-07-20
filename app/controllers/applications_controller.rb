@@ -53,7 +53,7 @@ class ApplicationsController < ApplicationController
       applicant = Applicant.create(:name => params["name_label"], 
         :email => params["email_label"])
     end
-    @application = Application.new(:cv =>params[:application][:cv], 
+    @application = Application.new(:CV =>params[:application][:CV], 
       :linkedin => params[:application][:linkedin], 
       :priority => params[:application][:priority], 
       :military_status => params[:application][:military_status], 

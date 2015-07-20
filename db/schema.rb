@@ -11,13 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150720033556) do
+ActiveRecord::Schema.define(:version => 20150720143303) do
 
   create_table "applicants", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "file_avatar_file_name"
+    t.string   "file_avatar_content_type"
+    t.integer  "file_avatar_file_size"
+    t.datetime "file_avatar_updated_at"
   end
 
   create_table "applications", :force => true do |t|
@@ -30,6 +34,10 @@ ActiveRecord::Schema.define(:version => 20150720033556) do
     t.integer  "applicant_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "CV_file_name"
+    t.string   "CV_content_type"
+    t.integer  "CV_file_size"
+    t.datetime "CV_updated_at"
   end
 
   create_table "interviewers", :force => true do |t|
