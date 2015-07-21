@@ -31,7 +31,7 @@
             <td><%= application.military_status %></td>
             <td><%= application.vacant_job_id %></td>
             <td><%= application.application_status %></td>
-            <td><%= application.applicant.name %></td>
+            <td><%= link_to application.applicant.name, application.applicant %></td>
             <td><%= link_to application.CV_file_name, application.CV.url %></td>
 
             <td><%= link_to 'Show', application %></td>
