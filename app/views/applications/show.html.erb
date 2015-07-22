@@ -30,6 +30,9 @@
   <dd><%= @application.application_status %></dd>
 
   <dt>Applicant:</dt>
-  <dd><%= @application.applicant_id %></dd>
+  <dd><%= link_to application.applicant.name, application.applicant %></dd>
+
+  <dt>CV:</dt>
+  <dd><%= link_to @application.CV_file_name, @application.CV.url %></dd>
 
 </dl>

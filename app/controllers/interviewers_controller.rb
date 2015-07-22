@@ -41,6 +41,8 @@ class InterviewersController < ApplicationController
   # POST /interviewers
   # POST /interviewers.json
   def create
+            puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+
     @interviewer = Interviewer.new(params[:interviewer])
 
     respond_to do |format|

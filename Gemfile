@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 gem 'bootstrap-generators', '~> 3.3.4'
 gem "bcrypt-ruby", "~> 3.0.0"
+gem "paperclip", "~> 4.3"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

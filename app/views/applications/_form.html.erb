@@ -24,15 +24,14 @@
     <div class="col-sm-10">
       <input class="form-control" id="applicant_email" name="email_label" size="30" type="text" />
     </div>
-  </div>
-
 
   <div class="form-group">
-    <%= f.label :cv, class: "col-sm-2 control-label" %>
+    <%= f.label :CV, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :cv, class: "form-control" %>
+      <%= f.file_field :CV %>
     </div>
   </div>
+
   <div class="form-group">
     <%= f.label :linkedin, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
@@ -69,6 +68,11 @@
       <%= f.number_field :applicant_id, class: "form-control" %>
     </div>
   </div>
+
+
+
+
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit class: "btn btn-primary" %>
