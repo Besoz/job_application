@@ -1,8 +1,185 @@
 <div class="page-header">
-  <%= link_to new_application_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Application
-  <% end %>
+
+
+    <script src='/assets/jquery/dist/jquery.min.js'></script>
+    <script src='/assets/moment/min/moment.min.js'></script>
+    <script src='/assets/fullcalendar/dist/fullcalendar.js'></script>
+    <link rel='stylesheet' href='/assets/fullcalendar/dist/fullcalendar.css' />
+
+
+
+    <%= link_to new_application_path, class: 'btn btn-primary' do %>
+        <span class="glyphicon glyphicon-plus"></span>
+        New Application
+    <% end %>
+    <script type="text/javascript">
+    $(document).ready(function() {  
+
+        $('#calendar').fullCalendar({
+            eventSources: [
+                color: 'black',     // an option!
+                textColor: 'yellow', // an option!
+                // event source
+                events: function(start, end, timezone, callback) {
+                    $.ajax({
+                        url: '/applications/load_events',
+                        type: 'get',
+                        data: {
+                            // our hypothetical feed requires UNIX timestamps
+                            start: start.unix(),
+                            end: end.unix()
+                            // can send json or other things
+                        },
+                        success: function(jsonResponse) {
+                            var events = [];
+                            for ( var i = 0; i < jsonResponse.length; i++){
+                                var person = {start:jsonResponse[i].date, title:"Event" + i};
+                                events.push(person);
+                            }
+                            callback(events);
+                        }
+
+                    });
+                }
+            ]
+
+        }
+
+    
+
+
+    });
+
+    // page is now ready, initialize the calendar...
+/*
+    $('#calendar').fullCalendar({
+
+
+    //       dayClick: function(date, jsEvent, view) {
+
+    //       $.ajax({
+    //             url: '/applications/put_events',
+    //             type: 'post',
+    //             data: {
+    //                 // our hypothetical feed requires UNIX timestamps
+    //                 // start: start.unix(),
+    //                 // end: end.unix()
+    //                 myDate: date;
+
+    //                 // can send json or other things
+    //             },
+    //             success: function(doc) {
+    //                 // var events = [];
+    //                 // $(doc).find('event').each(function() {
+    //                 //     events.push({
+    //                 //         title: $(this).attr('title'),
+    //                 //         start: $(this).attr('start') // will be parsed
+    //                 //     });
+    //                 // });
+    //                 // callback(events);
+    //                 alert (doc);
+    //             }
+    //         });
+
+    //     alert('Clicked on: ' + date.format());
+
+    //     alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+    //     alert('Current view: ' + view.name);
+
+    //     // change the day's background color just for fun
+    //     $(this).css('background-color', 'red');
+
+    // }
+
+
+            eventSources: [
+
+        // your event source
+            {
+            events: [ // put the array in the `events` property
+                {
+                    title  : 'event1',
+                    start  : '2015-07-25'
+                },
+                {
+                    title  : 'event2',
+                    start  : '2015-25-07',
+                    end    : '2015-25-08'
+                },
+                {
+                    title  : 'event3',
+                    start  : '2015-07-28',
+                }
+            ],
+            color: 'black',     // an option!
+            textColor: 'yellow' // an option!
+        }
+
+    ],
+    events: function(start, end, timezone, callback) {
+
+        $.ajax({
+            url: '/applications/load_events',
+            type: 'get',
+            data: {
+                // our hypothetical feed requires UNIX timestamps
+                start: start.unix(),
+                end: end.unix()
+                // can send json or other things
+            },
+            success: function(jsonResponse) {
+
+                $(jsonResponse).find('object').each(function() {
+                    events.push({
+                        // title: $(this).attr('title'),
+                        start: $(this).attr('date') // will be parsed
+                    });
+                });
+
+                //alert (events.to_string);
+                // callback(events);
+                console.log(jsonResponse);
+                alert (jsonResponse);
+            }
+
+        });
+         alert('Bassem');
+    }
+    /*,
+   events: function(start, end, timezone, callback) {
+        $.ajax({
+            url: '/applications/load_events',
+            type: 'get',
+            data: {
+                // our hypothetical feed requires UNIX timestamps
+                // start: start.unix(),
+                // end: end.unix()
+                koko: "kkkkkkkkk"
+
+                // can send json or other things
+            },
+            success: function(doc) {
+                // var events = [];
+                // $(doc).find('event').each(function() {
+                //     events.push({
+                //         title: $(this).attr('title'),
+                //         start: $(this).attr('start') // will be parsed
+                //     });
+                // });
+                // callback(events);
+                alert (doc);
+            }
+        });
+    }
+
+
+
+})
+*/
+});
+
+  </script>
   <h1>Listing applications</h1>
 </div>
 
@@ -35,9 +212,30 @@
             <td><%= link_to application.CV_file_name, application.CV.url %></td>
 
             <td><%= link_to 'Show', application %></td>
-        <td><%= link_to 'Edit', edit_application_path(application) %></td>
-        <td><%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_application_path(application) %></td>
+            <td><%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Create interview', new_interview_event_path %></td>
       <% end %>
     </tbody>
   </table>
+</div>
+<div id='calendar'></div>
+<script>
+receta = angular.module('receta',[
+])
+app = angular.module('MyApp', ["ui.calendar"])
+</script>
+<div class="container-fluid" ng-app="MyApp">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h1 ng-if="name">Hello, {{name}}</h1>
+    </div>
+    <div class="panel-body">
+      <form class="form-inline">
+        <div class="form-group">
+          <input class="form-control" type="text" placeholder="Enter your name" autofocus ng-model="name">
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

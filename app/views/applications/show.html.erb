@@ -1,4 +1,88 @@
 <div class="page-header">
+
+  <script src='/assets/jquery/dist/jquery.min.js'></script>
+  <script src='/assets/moment/min/moment.min.js'></script>
+  <script src='/assets/fullcalendar/dist/fullcalendar.js'></script>
+  <link rel='stylesheet' href='/assets/fullcalendar/dist/fullcalendar.css' />
+
+   <script type="text/javascript">
+    $(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+/*
+
+          dayClick: function(date, jsEvent, view) {
+
+          $.ajax({
+                url: '/applications/put_events',
+                type: 'post',
+                data: {
+                    // our hypothetical feed requires UNIX timestamps
+                    // start: start.unix(),
+                    // end: end.unix()
+                    myDate: date;
+
+                    // can send json or other things
+                },
+                success: function(doc) {
+                    // var events = [];
+                    // $(doc).find('event').each(function() {
+                    //     events.push({
+                    //         title: $(this).attr('title'),
+                    //         start: $(this).attr('start') // will be parsed
+                    //     });
+                    // });
+                    // callback(events);
+                    alert (doc);
+                }
+            });
+
+        alert('Clicked on: ' + date.format());
+
+        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+        alert('Current view: ' + view.name);
+
+        // change the day's background color just for fun
+        $(this).css('background-color', 'red');
+
+    }
+  */
+   events: function(start, end, timezone, callback) {
+        $.ajax({
+            url: '/applications/load_events',
+            type: 'get',
+            data: {
+                // our hypothetical feed requires UNIX timestamps
+                // start: start.unix(),
+                // end: end.unix()
+                koko: "kkkkkkkkk"
+
+                // can send json or other things
+            },
+            success: function(doc) {
+                // var events = [];
+                // $(doc).find('event').each(function() {
+                //     events.push({
+                //         title: $(this).attr('title'),
+                //         start: $(this).attr('start') // will be parsed
+                //     });
+                // });
+                // callback(events);
+                alert (doc);
+            }
+        });
+    }
+
+
+
+})
+
+});
+  </script>
+
   <%= link_to applications_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
@@ -30,9 +114,11 @@
   <dd><%= @application.application_status %></dd>
 
   <dt>Applicant:</dt>
-  <dd><%= link_to application.applicant.name, application.applicant %></dd>
+  <dd><%= link_to @application.applicant.name, @application.applicant %></dd>
 
   <dt>CV:</dt>
   <dd><%= link_to @application.CV_file_name, @application.CV.url %></dd>
+
+  <div id='calendar'></div>
 
 </dl>

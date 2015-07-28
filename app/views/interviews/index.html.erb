@@ -23,7 +23,7 @@
       <%= content_tag_for(:tr, @interviews) do |interview| %>
             <td><%= interview.score %></td>
             <td><%= interview.application_id %></td>
-            <td><%= interview.type_id %></td>
+            <td><%= interview.interview_type_id %></td>
             <td><%= link_to 'Show', interview %></td>
         <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
         <td><%= link_to 'Destroy', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>

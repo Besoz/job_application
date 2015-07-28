@@ -25,6 +25,24 @@ gem 'bootstrap-generators', '~> 3.3.4'
 gem "bcrypt-ruby", "~> 3.0.0"
 gem "paperclip", "~> 4.3"
 
+	gem "bower-rails", "~> 0.10.0"
+
+
+gem 'angular-ui-calendar-rails'
+
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+
+
+gem 'sass', '3.2.19' 
+group :test, :development do
+  gem "rspec-rails", "~> 2.0"
+  gem "factory_girl_rails", "~> 4.0"
+  gem "capybara"
+  gem "database_cleaner"
+  gem "selenium-webdriver"
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

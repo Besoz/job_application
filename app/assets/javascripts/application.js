@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+//= require angular/angular
+
+//= require angular-ui-calendar
+
+//= require moment
+			

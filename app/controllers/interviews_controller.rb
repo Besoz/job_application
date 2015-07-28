@@ -40,6 +40,7 @@ class InterviewsController < ApplicationController
   # POST /interviews
   # POST /interviews.json
   def create
+    puts params[:interview];
     @interview = Interview.new(params[:interview])
 
     respond_to do |format|
@@ -79,5 +80,30 @@ class InterviewsController < ApplicationController
       format.html { redirect_to interviews_url }
       format.json { head :no_content }
     end
+  end
+    def load_events
+    puts "here"
+    puts params[:koko]
+    if request.xhr? #if refresh a small part
+    end
+    render text: "kok"
+
+  end
+
+  def put_events
+    # @application = Application.find(params[:id])
+    puts "put event"
+    puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+
+    puts params[:myDate]
+    puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+
+
+    @interview.update(date:params[:myDate]);
+
+    if request.xhr? #if refresh a small part
+    end
+    render text: params[:myDate]
+
   end
 end

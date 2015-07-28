@@ -41,7 +41,7 @@ class InterviewersController < ApplicationController
   # POST /interviewers
   # POST /interviewers.json
   def create
-            puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+    puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
 
     @interviewer = Interviewer.new(params[:interviewer])
 
@@ -56,6 +56,27 @@ class InterviewersController < ApplicationController
     end
   end
 
+  def load_events
+    puts "here"
+    puts params[:koko]
+    if request.xhr? #if refresh a small part
+    end
+    render text: "kok"
+
+  end
+
+  def put_events
+    puts "put event"
+    puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+
+    puts params[:myDate]
+    puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+
+    if request.xhr? #if refresh a small part
+    end
+    render text: params[:myDate]
+
+  end
   # PUT /interviewers/1
   # PUT /interviewers/1.json
   def update

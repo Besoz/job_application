@@ -1,0 +1,19 @@
+{
+  "name": "job_application",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Besoz/job_application",
+  "authors": [
+    "Besoz <basem.muhammad@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "~2.10.3"
+  }
+}

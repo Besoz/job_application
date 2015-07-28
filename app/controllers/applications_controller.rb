@@ -99,4 +99,13 @@ class ApplicationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def load_events
+    puts "here"
+    puts params[:koko]
+    if request.xhr? #if refresh a small part
+    end
+    render json: InterviewEvent.all.to_json
+  end
 end
+
+

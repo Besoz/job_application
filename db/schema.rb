@@ -11,17 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150720143303) do
+ActiveRecord::Schema.define(:version => 20150727040656) do
 
   create_table "applicants", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-    t.string   "file_avatar_file_name"
-    t.string   "file_avatar_content_type"
-    t.integer  "file_avatar_file_size"
-    t.datetime "file_avatar_updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "applications", :force => true do |t|
@@ -40,6 +36,23 @@ ActiveRecord::Schema.define(:version => 20150720143303) do
     t.datetime "CV_updated_at"
   end
 
+  create_table "interview_events", :force => true do |t|
+    t.integer  "score"
+    t.integer  "application_id"
+    t.integer  "interview_type_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "date"
+  end
+
+  create_table "interview_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "duration"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "interviewers", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -50,12 +63,14 @@ ActiveRecord::Schema.define(:version => 20150720143303) do
     t.string   "salt"
   end
 
-  create_table "interviews", :force => true do |t|
+  create_table "interviews", :id => false, :force => true do |t|
+    t.integer  "id",                               :null => false
     t.integer  "score"
     t.integer  "application_id"
-    t.integer  "type_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "interview_type_id",                :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "date",              :limit => nil
   end
 
   create_table "vacant_jobs", :force => true do |t|

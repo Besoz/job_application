@@ -11,6 +11,7 @@ end
 
 module JobApplication
   class Application < Rails::Application
+    require "/home/bassem/Ruby/rails_projects/job_application/config/initializers/bower_rails.rb"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -58,5 +59,9 @@ module JobApplication
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.assets.paths << Rails.root.join("app","assets","     bower_components")
+    config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
+
   end
 end

@@ -1,11 +1,34 @@
 JobApplication::Application.routes.draw do
+  get "sessions/new"
+
+  resources :interview_events do
+    member do 
+      post 'put_events'
+    end
+  end
+
+
+  resources :interview_types
+
+
+  resources :interviewers
+
+
   resources :vacant_jobs
 
 
   resources :interviews
 
 
-  resources :interviewers
+  resources :applications do
+    member do 
+      post 'put_events'
+    end
+    collection do
+      get 'load_events'
+
+    end
+  end
 
 
   resources :applications
@@ -14,9 +37,18 @@ JobApplication::Application.routes.draw do
   resources :applicants
 
 
+  resources :sessions, :only => [:new, :create, :destroy]
+
   match '/signup', :to => 'interviewers#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+
+
+  post '/interview_events/put_events/:id', to: 'interview_events#put_events'
+
+
+
+
 
 
 
