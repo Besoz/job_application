@@ -1,5 +1,6 @@
 class Interviewer < ActiveRecord::Base
 	has_many :applications
+  belongs_to :user
 
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   attr_accessor :password, :password_confirmation

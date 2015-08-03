@@ -13,7 +13,11 @@ class InterviewEventsController < ApplicationController
   # GET /interview_events/1
   # GET /interview_events/1.json
   def show
-    @interview_event = InterviewEvent.find(params[:id])
+    puts "dddddddddddddddddddddddddddddddddddddd"
+    puts params[:id]
+    @interview_event = InterviewEvent.find_by_id(params[:id])
+
+    puts @interview_event
 
     respond_to do |format|
       format.html # show.html.erb
@@ -90,7 +94,7 @@ class InterviewEventsController < ApplicationController
   end
 
   def put_events
-    @interview_event = InterviewEvent.find(params[:id])
+    interview_event = InterviewEvent.find(params[:id])
 
     puts @interview_event.to_json
     
@@ -101,7 +105,7 @@ class InterviewEventsController < ApplicationController
     puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
 
 
-    @interview_event.update_attributes(date: params[:myDate]);
+    interview_event.update_attributes!(date: params[:myDate]);
 
     if request.xhr? #if refresh a small part
     end

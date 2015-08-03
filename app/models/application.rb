@@ -9,4 +9,5 @@ class Application < ActiveRecord::Base
   	has_attached_file :CV, :default_url => "/files/:style/missing.doc"
 
   	validates_attachment :CV, content_type: { content_type: "application/pdf" }
+
 end

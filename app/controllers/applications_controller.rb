@@ -1,6 +1,10 @@
 class ApplicationsController < ApplicationController
   # GET /applications
   # GET /applications.json
+
+  # $LOAD_PATH << '/lib/decorator'
+  require "decorator/event_decorator" 
+
   def index
     @applications = Application.all
 
@@ -25,7 +29,8 @@ class ApplicationsController < ApplicationController
   # GET /applications/new.json
   def new
     @application = Application.new
-    puts params.to_json
+    @applicant = Applicant.new
+
     @job_id = params[:job_id]
     puts "ffffffffffffffffffffffffffffff"
     puts @job_id
@@ -46,20 +51,14 @@ class ApplicationsController < ApplicationController
   def create
     #puts params.to_json
     #puts params["name_label"]
-    applicant = Applicant.find_by_email(params["email_label"])
+    applicant = Applicant.find_by_email(params[:applicant][:email])
     #puts applicant.to_json
-    if applicant == nil
-      #applicant found add new appliccation to it
-      applicant = Applicant.create(:name => params["name_label"], 
-        :email => params["email_label"])
-    end
-    @application = Application.new(:CV =>params[:application][:CV], 
-      :linkedin => params[:application][:linkedin], 
-      :priority => params[:application][:priority], 
-      :military_status => params[:application][:military_status], 
-      :vacant_job_id => params[:application][:vacant_job_id], 
-      :application_status => "1", 
-      :applicant_id => applicant.id )
+    
+    #applicant found add new appliccation to it
+    applicant = Applicant.create(params[:applicant]) if applicant.nil?
+
+    params[:application][:applicant_id] = applicant.id
+    @application = Application.new( params[:application])
 
     respond_to do |format|
       if @application.save
@@ -99,12 +98,15 @@ class ApplicationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def load_events
-    puts "here"
-    puts params[:koko]
+    @applications = Application.all
+
     if request.xhr? #if refresh a small part
     end
-    render json: InterviewEvent.all.to_json
+    events = EventDecorator::get_events_from_interviews InterviewEvent.all
+
+    render json: events
   end
 end
 

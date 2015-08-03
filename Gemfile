@@ -19,13 +19,15 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
+gem 'test-unit'
+gem 'devise'
+gem "cancan"
 gem 'jquery-rails'
 gem 'bootstrap-generators', '~> 3.3.4'
 gem "bcrypt-ruby", "~> 3.0.0"
-gem "paperclip", "~> 4.3"
+gem "paperclip", "~> 3.4.2"
 
-	gem "bower-rails", "~> 0.10.0"
+gem "bower-rails", "~> 0.10.0"
 
 
 gem 'angular-ui-calendar-rails'

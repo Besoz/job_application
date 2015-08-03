@@ -26,8 +26,6 @@ class ApplicantsController < ApplicationController
   def new
     @applicant = Applicant.new
 
-
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @applicant }
@@ -53,11 +51,11 @@ class ApplicantsController < ApplicationController
    #end 
 
     respond_to do |format|
-      if @applicant.save
+      if @applicant.save!
         format.html { redirect_to @applicant, notice: 'Applicant was successfully created.' }
         format.json { render json: @applicant, status: :created, location: @applicant }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @applicant.errors, status: :unprocessable_entity }
       end
     end

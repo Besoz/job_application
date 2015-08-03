@@ -1,5 +1,7 @@
 JobApplication::Application.routes.draw do
-  get "sessions/new"
+
+  devise_for :users
+
 
   resources :interview_events do
     member do 
@@ -37,11 +39,11 @@ JobApplication::Application.routes.draw do
   resources :applicants
 
 
-  resources :sessions, :only => [:new, :create, :destroy]
+  # resources :sessions, :only => [:new, :create, :destroy]
 
-  match '/signup', :to => 'interviewers#new'
-  match '/signin', :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy'
+  # match '/signup', :to => 'interviewers#new'
+  # match '/signin', :to => 'sessions#new'
+  # match '/signout', :to => 'sessions#destroy'
 
 
   post '/interview_events/put_events/:id', to: 'interview_events#put_events'

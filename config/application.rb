@@ -60,7 +60,8 @@ module JobApplication
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.paths << Rails.root.join("app","assets","     bower_components")
+    config.assets.paths << Rails.root.join("app","assets","plugins")
+    config.autoload_paths += Dir["#{Rails.root}/lib/event_decorator"]
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
 
   end
